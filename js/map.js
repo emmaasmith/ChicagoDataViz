@@ -71,19 +71,19 @@ function drawMap(){
     .attr("spreadMethod", "pad");
 
   gradient.append("svg:stop")
-      .attr("offset", "0%")
-      .attr("stop-color", "green")
-      .attr("stop-opacity", 1);
+    .attr("offset", "0%")
+    .attr("stop-color", "green")
+    .attr("stop-opacity", 1);
 
   gradient.append("svg:stop")
-      .attr("offset", "50%")
-      .attr("stop-color", "yellow")
-      .attr("stop-opacity", 1);
+    .attr("offset", "50%")
+    .attr("stop-color", "yellow")
+    .attr("stop-opacity", 1);
 
   gradient.append("svg:stop")
-      .attr("offset", "100%")
-      .attr("stop-color", "red")
-      .attr("stop-opacity", 1);
+    .attr("offset", "100%")
+    .attr("stop-color", "red")
+    .attr("stop-opacity", 1);
 
   var keyScale = d3.scale.linear()
     .domain(colDom)
@@ -233,6 +233,8 @@ function drawMap(){
             .on("mouseover", function(d) {
               var boxX = d3.select(this).attr("cx");
               var boxY = d3.select(this).attr("cy"); 
+              boxY = Number(boxY) + 245;
+              console.log(boxY);
               d3.select("#schoolBox")
                 .style("left", boxX + "px")
                 .style("top", boxY + "px")
