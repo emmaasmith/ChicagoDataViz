@@ -1,0 +1,64 @@
+<!-- Content -->
+<div class="content">
+  <%= render 'intro' %>
+  <%= render 'schools_affected' %>
+
+  <ul class="school-filters">
+    <li><strong><%= I18n.t(:filter_by) %>:</strong></li>
+    <li><a class="selected flag-all" href="#" data-filter="*"><%= I18n.t(:all) %></a></li>
+    <li><a class="flag-closing" href="#" data-filter=".closing"><%= I18n.t(:closing) %></a></li>
+    <li><a class="flag-turnaround" href="#" data-filter=".turnaround"><%= I18n.t(:turnaround) %></a></li>
+    <li><a class="flag-relocating" href="#" data-filter=".relocating"><%= I18n.t(:relocating) %></a></li>
+    <li><a class="flag-co-locating" href="#" data-filter=".co-locating"><%= I18n.t(:colocating) %></a></li>
+    <li><a class="flag-closing-grades-9-to-11" href="#" data-filter=".closing-grades-9-to-11"><%= I18n.t(:closing_9_11) %></a></li>
+    <li><a class="flag-receiving" href="#" data-filter=".receiving"><%= I18n.t(:receiving) %></a></li>
+    <li><a class="flag-phasing-out-over-2-years" href="#" data-filter=".phasing-out-over-2-years"><%= I18n.t(:phasing_out)%></a></li>
+  </ul>
+
+  <div class="clear"></div>
+
+  <div class="schools" id="names">
+    <ol>
+      <% @schools.each do |school| %> 
+        <li class='<%="#{school.closing_status_name.gsub(' ','-')} #{school.receiving_status_name}" %>' >
+          <%= link_to school.short_name, school_path(school) %>
+          <span <%= (school.closing_status.nil? || school.closing_status == 0) ? "" : 
+            "class=flag-#{school.closing_status_name.gsub(' ','-')}" %>>
+            <%= (school.closing_status==0) ? "" : school.closing_status_name %>
+          </span>
+          <span <%= school.receiving_status.nil? ? "" : "class=flag-#{school.receiving_status_name}" %>>
+            <%= school.receiving_status_name %>
+          </span>
+        </li>
+      <% end %>
+    </ol>
+
+  </div>
+
+  <hr />
+  <script src="/scripts/jquery.isotope.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(function(){
+      var $container = $("#names ol");
+
+      $container.isotope({
+      itemSelector: "li",
+      layoutMode: 'fitColumns'
+    });
+
+
+    $('.school-filters a').click(function(){
+      $(".school-filters a").removeClass("selected");
+      $(this).addClass("selected");
+      var selector = $(this).attr('data-filter');
+      $container.isotope({ filter: selector });
+      return false;
+    });
+          });
+  </script>
+  <%= render 'detailed_look' %>
+  <div class="clear"></div>
+</div>
+<!-- /Content -->
+
+

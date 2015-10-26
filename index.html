@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <title>Data: Chicago Mayoral Votes</title>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+      <link rel="stylesheet" href="css/style.css">
+
+      <script src="http://d3js.org/d3.v3.min.js"></script>
+      <script src="http://d3js.org/topojson.v1.min.js"></script>
+      <script src="//use.typekit.net/jhn0haa.js"></script>
+      <script>try{Typekit.load();}catch(e){}</script>
+      <script src="https://use.typekit.net/lez6lgn.js"></script>
+      <script>try{Typekit.load({ async: true });}catch(e){}</script>
+      <link rel="stylesheet" href="css/skeleton.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      <script src="js/menus.js"></script>
+  </head>
+
+<body>
+  <div id="wrapper" class="container">
+    <div class="row">
+      <h1>Why did Rahm not get Chicago's votes in February?</h1>
+      <br><br><br><h2>The full map of Chicago with editable parameters:</h2>
+      <h2><a href="/map.html"><i><u>Next: My analysis of the data</u></i></a></h2>
+      <br><br><br>
+    </div>
+  </div>
+
+  <div class="mappost"></div>
+  <script src="js/map.js"></script>
+  <br><br>
+
+  <div id="wrapper" class="container parameters">
+    <div class="row">
+      <div class="four columns">
+        X-axis:
+        <br><select id="xMenu" onchange="changeX()"></select>
+        <br><form id="domXf">
+          <div class="row">
+            <div class="two columns">Low:</div>
+            <div class="ten columns"><input type="text" class="xloN" value="0"></div> 
+          </div>
+          <div class="row">
+            <div class="two columns">High:</div>
+            <div class="ten columns"><input type="text" class="xmidN" value="100"></div>
+          </div>
+          <div class="row">
+            <input value="Submit" type="submit">
+          </div>
+        </form>
+      </div>
+
+      <div class="four columns">
+        Y-axis:
+        <br><select id="yMenu" onchange="changeY()"></select>
+        <br><form id="domYf">
+          <div class="row">
+            <div class="two columns">Low:</div>
+            <div class="ten columns"><input type="text" class="yloN" value="0"></div> 
+          </div>
+          <div class="row">
+            <div class="two columns">High:</div>
+            <div class="ten columns"><input type="text" class="ymidN" value="100"></div>
+          </div>
+          <div class="row">
+            <input value="Submit" type="submit">
+          </div>
+        </form>
+      </div>
+
+      <div class="four columns">
+        Color:
+        <br><select id="cMenu" onchange="changeCol()"></select>
+        <br><form id="domCf">
+          <div class="row">
+            <div class="two columns">Low:</div>
+            <div class="ten columns"><input type="text" class="cloN" value="80"></div> 
+          </div>
+          <div class="row">
+            <div class="two columns">Mid:</div>
+            <div class="ten columns"><input type="text" class="cmidN" value="95"></div>
+          </div>
+          <div class="row">
+            <div class="two columns">High:</div>
+            <div class="ten columns"><input type="text" class="chiN" value="100"></div>
+          </div>
+          <div class="row">
+            <input value="Submit" type="submit">
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="keytext">
+    <div class="keyT">Low</div>
+    <div class="keyT">High</div>
+  </div>
+
+  <div id = "refreshButton">
+    <input name="rButton" type="button" value="Randomize Dot Order" onclick="changeX()">
+  </div>
+
+  <div id="schoolBox" class="hidden">
+    <p><strong><span id="SName">OfficialFullName</span></strong></p><br>
+    <p><strong>School Action: </strong><span id="SResult">Impact</span></p>
+    <p><strong>Performance Policy Points: </strong><span id="SPoints">XPerformancePolicyPoints</span> out of 100</p>
+    <p><strong>2013 Enrollment: </strong><span id="SEnroll">X20122013Enrollment</span> students</p>
+    <p><strong>% Low Income: </strong><span id="SLowIncome">X20092010LowIncome</span></p>
+  </div>
+
+  <div id="precinctBox" class="hidden">
+    <strong>Ward <span id="SWard">Ward</span>, Precinct  <span id="SPrecinct">Precinct</span></strong>
+    <br>
+    
+    <br><strong>2015 (Feb) Mayoral Votes:</strong>
+    <p><strong>Emanuel: </strong><span id="SEmanuel">Emanuel_Pct</span>%</p>
+    <p><strong>Garcia: </strong><span id="SGarcia">Garcia_Pct</span>%</p>
+    <p><strong>Wilson: </strong><span id="SWilson">Wilson_Pct</span>%</p>
+    <p><strong>Fioretti: </strong><span id="SFioretti">Fioretti_Pct</span>%</p>
+    <p><strong>Walls: </strong><span id="SWalls">Walls_Pct</span>%</p>
+    <p><strong>Total Votes: </strong><span id="STot">Voting_Tot</span></p>
+  </div>
+</body>
+</html>
