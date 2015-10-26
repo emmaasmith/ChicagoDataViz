@@ -1,5 +1,5 @@
-## ChicagoDataViz
-#Investigation into Chicago mayoral election results.
+# ChicagoDataViz
+### Investigation into Chicago mayoral election results.
 
 This is all still VERY MUCH a work in progress.
 I'm not claiming any of my conclusions to be definitively true, and I hope my language reflects that.
@@ -38,7 +38,7 @@ School utilization (201314enrollmentspace.csv) from http://cps.edu/qualityschool
 // cd Desktop/Independent\ Study/TestCartogram/Process  
 
 
-# This creates the shapefile  
+### This creates the shapefile  
 rm -f RoughData/delete.json  
 rm -f RoughData/delete.dbf  
 rm -f RoughData/delete.prj  
@@ -47,7 +47,7 @@ rm -f RoughData/delete.shx
 ogr2ogr -select WARD,PRECINCT,FULL_TEXT -f 'ESRI Shapefile' -t_srs EPSG:4326 RoughData/delete.shp Data/Precincts__current_/PRECINCTS_2012.shp  
 
 
-# This adds the count for schools  
+### This adds the count for schools  
 In QGIS:  
 // Layer -> Add Layer -> Add Vector Layer -> delete.shp  
 // Add .csv -> SchoolsFinal.csv  
@@ -59,14 +59,14 @@ Output as SchoolsFinal2 shapefile
 Output as SchoolsFinal2.csv  
 
 
-# This adds the data to the shapes  
+### This adds the data to the shapes  
 // Run AddSchoolToPrecinct.R  
 topojson -o RoughData/PrecinctFinal.json -e  RoughData/PrecinctFinal.csv --id-property=+FULL_TEXT -p -- RoughData/PrecinctPtCnt.shp  
 sed -E 's/\"([0123456789])/\1/g' < RoughData/PrecinctFinal.json > RoughData/delete.json  
 sed -E 's/([0123456789])\"/\1/g' < RoughData/delete.json > RoughData/PrecinctFinal.json  
 
 
-# This hosts the site locally  
+### This hosts the site locally  
 python -m SimpleHTTPServer 8888 &  
 // http://localhost:8888/  
 
