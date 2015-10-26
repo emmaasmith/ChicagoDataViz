@@ -63,12 +63,7 @@ Output as SchoolsFinal2.csv
 // Run AddSchoolToPrecinct.R  
 topojson -o RoughData/PrecinctFinal.json -e  RoughData/PrecinctFinal.csv --id-property=+FULL_TEXT -p -- RoughData/PrecinctPtCnt.shp  
 sed -E 's/\"([0123456789])/\1/g' < RoughData/PrecinctFinal.json > RoughData/delete.json  
-sed -E 's/([0123456789])\"/\1/g' < RoughData/delete.json > RoughData/PrecinctFinal.json  
-
-
-### This hosts the site locally  
-python -m SimpleHTTPServer 8888 &  
-// http://localhost:8888/  
+sed -E 's/([0123456789])\"/\1/g' < RoughData/delete.json > RoughData/PrecinctFinal.json   
 
 
 NOTE: http://media.apps.chicagotribune.com/ward-redistricting-2012/index.html shows how precinct mapping is close but not exact
