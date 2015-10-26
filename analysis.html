@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <title>Data: Chicago Mayoral Votes</title>
+      <link rel="stylesheet" href="css/style.css">
+      <script src="http://d3js.org/d3.v3.min.js"></script>
+      <script src="http://d3js.org/topojson.v1.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+      <script src="js/jquery.waypoints.min.js"></script>
+      <script src="//use.typekit.net/jhn0haa.js"></script>
+      <script>try{Typekit.load();}catch(e){}</script>
+      <script src="https://use.typekit.net/lez6lgn.js"></script>
+      <script>try{Typekit.load({ async: true });}catch(e){}</script>
+      <link rel="stylesheet" href="css/skeleton.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  </head>
+
+<body>
+  <div id="wrapper" class="container">
+    <h1>Why did Rahm not get Chicago's votes in February?</h1>
+    <div class="row">
+      <div id="text-wrapper" class="four columns">
+        <h2><a href="/project/interactive.html"><i><u>Next: The full map of Chicago with editable parameters</i></u></a></h2>
+
+      <div class="section" id="s1">
+        <h2>Intro: a Scrolling Data Investigation</h2>
+        <p>Chicago politics are fascinating. The home of Obama, Chicago boasts a strong liberal base in the otherwise-conservative Illinois.</p>
+        <p>In 2011, Rahm Emanuel won the nonpartisan mayoral election against Gery Chico and others with over 50% of the vote. </p>
+        <p>Emanuel then served a controversial first term.</p>
+        <p>In 2015, he sought office again in an election against Chuy Garcia and others. Emanuel couldn't rally a majority vote this time, forcing an unprecedented runoff against Garcia. Emanuel was elected.</p>
+        <br>
+
+        <!-- THESIS -->
+        <b>What caused this change? Or more broadly: what are the key predictors of Chicago voting behaviors?</b>
+        <h2>Our answer: <u>Race</u>.</h2>
+      </div>
+
+      <div class="section" id="s2">
+        <p>Chicago is made up of discrete racial pockets.</p>
+        <p>These pockets often correlate to political outcomes.</p>
+        <br>
+        <div class="racekey">
+            Chicago precincts, colored by race
+            <br><span style='color:#000000'>&#9724; Majority White</span>
+            <br><span style='color:#ff0000'>&#9724; Majority Black</span>
+            <br><span style='color:#0000ff'>&#9724; Majority Hispanic</span>
+        </div>
+      </div>
+
+      <div class="section" id="s3">
+        <p>In 2015, the three leading candidates were Emanuel, Garcia, and Wilson.</p>
+        <div class="racekey">
+            Chicago 2015 results, colored red if Wilson received >20% vote, otherwise by plurality
+            <br><span style='color:#000000'>&#9724; Majority Emanuel</span>
+            <br><span style='color:#ff0000'>&#9724; Majority Wilson</span>
+            <br><span style='color:#0000ff'>&#9724; Majority Garcia</span>
+        </div>
+      </div>
+
+      <div class="section" id="s4">
+        <p>Rahm's 2011 win can also be attributed to a coalition of white and black voters.</p>
+        <p>He ran against Gery Chico, a Hispanic candidate.</p>
+        <div class="racekey">
+            Chicago 2011 results, colored by percent vote
+            <br><span style='color:red'>&#9724; Majority Emanuel</span>
+            <br><span style='color:green'>&#9724; Majority Chico</span>
+        </div>
+      </div>
+
+      <div class="section"  id="s5">
+        <!-- Main question -->
+        <h2>Below, we will show <u>race</u> to be a leading factor in the 2015 Mayoral vote.</h2> 
+        <b><br>We compare race to two alternative hypotheses: 
+        <br><i class="fa fa-angle-double-right"></i> <u>(1)</u> Political ideology
+        <br><i class="fa fa-angle-double-right"></i> <u>(2)</u> Policy support.</b>
+        <br>
+        <p>We use data from the: 
+            <li>2011 Mayoral</li> 
+            <li>2012 Presidential</li> 
+            <li>2014 Governor</li>
+            <li>and 2015 Mayoral</li> 
+        elections, matching them with data from demographics and school closings.</p>
+        
+        <!-- Link to the data explanation -->
+        <!-- <p>Learn more about the data and process here.</p> -->
+      </div>
+
+      <div class="section"  id="s6">
+        <h2>Hypothesis 1: Is political ideology the leading factor for voting behavior?</h2>
+        <p>Did people vote against Rahm because he was too conservative or too liberal?</p>
+        <p>Is race simply correlated with general conservatism?</p>
+      </div>
+
+      <div class="section"  id="s7">
+        <h3>There does appear to be a correlation between race and ideology.</h3>
+        <p>In order from liberal to conservative: black, then Hispanic, then white voters.</p>
+        <p>A plot of Governor and Presidential voters colored by race ought indicate a close correlation: upper left is most Democratic, while lower right is most Republican.</p>
+        <div class="racekey">
+            <br><span style='color:#000000'>&#9724; Majority White</span>
+            <br><span style='color:#ff0000'>&#9724; Majority Black</span>
+            <br><span style='color:#0000ff'>&#9724; Majority Hispanic</span>
+        </div>
+        <p>Let's see if this holds up with Mayoral data from the 2011, 2015 general, and 2015 runoff elections.</p>
+      </div>
+
+      <div class="section"  id="s8">
+        <h3>A. 2011 Mayoral election</h3>
+        <p>We keep the Governor data on the X-axis, but swap out the Y-axis (from Presidential to 2011 Mayoral results). </p>
+        <p>Pretty different! </p>
+        <p><b>Votes are no longer tightly linked to conservatism, like before.</b></p>
+        <div class="racekey">
+            <br><span style='color:#000000'>&#9724; Majority White</span>
+            <br><span style='color:#ff0000'>&#9724; Majority Black</span>
+            <br><span style='color:#0000ff'>&#9724; Majority Hispanic</span>
+        </div>
+      </div>
+
+      <div class="section"  id="s9">
+        <p>Based on our race-ideology correlation, we expect black and white voters to continue to hold opposing views, with Hispanic voters in the middle.</p>
+        <p>Instead, black (liberal) and white (conservative) voters <u>both prefer Emanuel</u>, while Hispanic (moderate) voters want Chico.</p>
+        <p><b>Thus, the race-ideology correlation no longer applies.</b></p>
+        <p>A compelling explanation is that white voters like Emanuel for his conservatism and race, while black voters trust him due to Obama's endorsement. The Hispanic voters prefer Chico, the Hispanic candidate.</p>
+        <div class="racekey">
+            <br><span style='color:#000000'>&#9724; Majority White</span>
+            <br><span style='color:#ff0000'>&#9724; Majority Black</span>
+            <br><span style='color:#0000ff'>&#9724; Majority Hispanic</span>
+        </div>
+      </div>
+
+      <div class="section"  id="s10">
+        <h3>B. 2015 Mayoral election</h3>
+        <p>The same coaltion of black (liberal) and white (conservative) voters remains for the 2015 election data.</p>
+        <p>From 2011 to 2015, the black and white votes drop. Likely, this is because Emanual has shown through his previous term to be conservative. The Obama endorsement has been weakened.</p>
+        <div class="racekey">
+            <br><span style='color:#000000'>&#9724; Majority White</span>
+            <br><span style='color:#ff0000'>&#9724; Majority Black</span>
+            <br><span style='color:#0000ff'>&#9724; Majority Hispanic</span>
+        </div>
+      </div>
+
+
+      <div class="section"  id="s11">
+        <h3>C. 2015 Runoff Mayoral election</h3>
+        <p>The white votes stay lower than their 2011 levels. But the black votes increase as a group to approximately the same level as in 2011.</p>
+        <p>If black voters chose based on political ideology, they'd prefer Chuy -- the liberal candidate.</p>
+        <p>Instead, they return to Emanuel. The interpretation is that their candidate, Wilson, was removed, so they gave allegiance to Obama's candidate.</p>
+        <div class="racekey">
+            <br><span style='color:#000000'>&#9724; Majority White</span>
+            <br><span style='color:#ff0000'>&#9724; Majority Black</span>
+            <br><span style='color:#0000ff'>&#9724; Majority Hispanic</span>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="section"  id="s12">        
+        <h2>Hypothesis 2: Is local policy the leading factor for voting behavior?</h2>
+        <p>Did people vote against Rahm because of his prominent policies?</p>
+        <p>Is race just correlated with public opinion on Rahm's policies?</p>
+        <br>
+        <p>One of Emanuel's most discussed policies was, in 2013, closing 49 Chicago Public Schools.</p>
+        <p>The public school closings were a controversial policy, as some claimed they disproportionately harmed underprivileged populations.</p>
+        <p>The media suggest that school closings may have played some role in dissuading voters from supporting Rahm.<sup><a href="http://www.nytimes.com/2015/02/25/us/politics/chicago-votes-on-giving-rahm-emanuel-a-second-term-as-mayor.html?_r=0">1</a></sup> Chuy even used the issue in his campaign.<sup><a href="http://www.huffingtonpost.com/2015/03/25/chicago-mayoral-race-school-funding_n_6939732.html">2</a>,<a href="http://www.democracynow.org/2015/3/6/jesus_chuy_garcia_meet_the_chicago">3</a></sup></p>
+      </div>
+
+      <div class="section"  id="s13">
+        <h3>A. Are school closings associated with overall vote?</h3>
+        <p>Not much.</p> 
+        <p><b>The hypothesis:</b> Non-white voters voted against Rahm because of his policies.</p>
+        <p><b>We'd thus expect to see:</b> Non-white votes for Wilson supporting Chuy in the run-offs.</p>  
+        <p><b>Instead:</b> We explained above that black voters initially vote for Wilson, then switch to <u>Rahm</u>, not to Garcia.</p>
+        <div class="racekey">
+            <br><span style='color:#000000'>&#9724; Majority White</span>
+            <br><span style='color:#ff0000'>&#9724; Majority Black</span>
+            <br><span style='color:#0000ff'>&#9724; Majority Hispanic</span>
+        </div>
+      </div>
+
+      <div class="section"  id="s14">
+        <p><b>Further evidence</b>: A 2014 opinion vote on giving public schools with low-income or ESL students more funding.</p>
+        <p>Is there a pattern between voting for school funding, voting for Emanuel, or having a closed school?</p>
+        <p>The majority-white precincts form an interesting data shape.</p>
+        <div class="racekey">
+            <br><span style='color:#000000'>&#9724; Majority White</span>
+            <br><span style='color:#ff0000'>&#9724; Majority Black</span>
+            <br><span style='color:#0000ff'>&#9724; Majority Hispanic</span>
+        </div>
+      </div>
+
+      <div class="section"  id="s15">
+        <p>We'll isolate the majority-white precincts, coloring by whether a precinct either has a closed school <i>or</i> voted no.</p>
+        <div class="racekey">
+            <br><span style='color:#000000'>&#9724; Neither of below </span>
+            <br><span style='color:#ff0000'>&#9724; Closed schools</span>
+            <br><span style='color:#0000ff'>&#9724; &lt; 55% voted yes </span>
+            <br>N.B. No precinct had both properties
+        </div>
+      </div>
+
+      <div class="section"  id="s16">
+        <p>The majority-white precincts that 
+        <br><b>vote <u>no</u> on school funding change</b> (conservative, on the left),
+        <br>vote at similar levels for Rahm as those that 
+        <br><b>had <u>closed schools</u></b> (liberal, right) </p>
+        <p><b>The issue of schools shows the coalition in Emanuel voters between liberals and conservatives!</b></p>
+        <p>Thus schools <u>unite</u> disparate voters, and are unlikely to be the leading factor for voting patterns.</p>
+        <div class="racekey">
+            <br><span style='color:#000000'>&#9724; Neither of below </span>
+            <br><span style='color:#ff0000'>&#9724; Closed schools</span>
+            <br><span style='color:#0000ff'>&#9724; &lt; 55% voted yes </span>
+        </div>
+      </div>
+
+    <div class="section"  id="s17">
+        <h3>B. Are school closings associated with <u>change</u> in Mayoral vote between 2011 and 2015?</h3>
+        <p>Yes.</p>
+        <p>Those against the school vote represent the population that has realized -- and <u>embraced</u> that Emanuel is conservative.</p>
+        <p>They prefer him in 2015, compared to in 2011.</p>
+        <p><b>Also,</b> the reverseis true for precincts holding closed schools.</p>
+        <div class="racekey">
+            <br>Plot of only precincts with closed schools or &gt; 45% no vote.
+            <br><span style='color:#ff0000'>&#9724; Closed schools</span>
+            <br><span style='color:#0000ff'>&#9724; &lt; 55% voted yes </span>
+            <br>Above y=x line <i class="fa fa-long-arrow-right"></i> prefer Emanuel in 2015.
+            <br>Below y=x line <i class="fa fa-long-arrow-right"></i> prefer Emanuel in 2011.
+        </div>
+    </div>
+
+    <div class="section"  id="s18">
+        <p>The same holds true when comparing 2011 to the Runoff election.</p>
+        <div class="racekey">
+            <br>Plot of only precincts with closed schools or &gt; 45% no vote.
+            <br><span style='color:#ff0000'>&#9724; Closed schools</span>
+            <br><span style='color:#0000ff'>&#9724; &lt; 55% voted yes </span>
+            <br>Above y=x line <i class="fa fa-long-arrow-right"></i> prefer Emanuel in 2015.
+            <br>Below y=x line <i class="fa fa-long-arrow-right"></i> prefer Emanuel in 2011.
+        </div>
+    </div>
+
+    <div class="section"  id="s19">
+        <p><b>Thus, while schools do play some role in votes, they mostly highlight changed perceptions on Rahm's conservatism.</b></p>
+        <p>The people who voted no in 2014 represent traditional conservatives.</p>
+        <div class="racekey">
+            <br>Plot of only precincts with majority-white voters.
+            <br><span style='color:#000000'>&#9724; &ge; 55% voted yes</span>
+            <br><span style='color:#ff0000'>&#9724; &lt; 55% voted yes </span>
+            <br>Above y=x line <i class="fa fa-long-arrow-right"></i> prefer Emanuel in 2015.
+            <br>Below y=x line <i class="fa fa-long-arrow-right"></i> prefer Emanuel in 2011.
+        </div>
+        <p>These conservatives disproportionately hated Obama in 2012 (showing only white-majority precincts for visual clarity).</p>
+        <p>By 2015, these voters had figured out that Rahm was conservative. They began voting for him.</p>
+    </div>
+
+    <div class="section"  id="s20">
+        <h2>Overall:</h2>
+        <p>Changes in votes do appear to be associated with increased perceptions of Rahm as a conservative.</p>
+        <p>Yet these perceptions seem to affect each major racial group as a whole, rather than individual precincts.</p>
+        <p><b>As a conclusion and sanity check: let's compare the results and turnout from the February and runoff Mayoral elections.</b></p>
+        <div class="racekey">
+            <br><span style='color:#000000'>&#9724; Majority White</span>
+            <br><span style='color:#ff0000'>&#9724; Majority Black</span>
+            <br><span style='color:#0000ff'>&#9724; Majority Hispanic</span>
+        </div>
+        <p>Scroll down for the comparison.</p>
+    </div>
+
+    <div class="section"  id="s21">
+        <p>The change between the 2015 election and runoffs occurs by dominant racial group:</p>
+        <br><b>Hispanic precincts: shift vertically</b>
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-right"></i> Higher turnout 
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-right"></i> Same support %</li>
+
+        <br><br><b>Black precincts: shift horizontally </b>
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-right"></i> Same turnout 
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-right"></i> Higher support for Emanuel (Wilson is gone)
+
+        <br><br><b>White precincts: shift vertically and horizontally</b>
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-right"></i> Higher turnout (scared by needing a runoff)
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-right"></i> Higher support for Emanuel (some voters wanted to "teach Emanuel a lesson")
+    </div>
+
+    <div class="section"  id="s22">
+        <p><h2>Thanks for following along!</h2></p>
+        <p>As a final disclaimer, this is all still <u>very much</u> a work in progress.
+        <br>I'm not claiming any of my conclusions to be definitively true, and I hope that my language reflects that.</p>
+        <p>I am aware that some factual errors exist; for instance certain schools' locations are listed incorrectly.
+        <br>There are also some key approximations, such as that the 2011 precincts were different from the other data sets (I took data modeling that change from the sources listed on <a href="https://github.com/emmaasmith/ChicagoDataViz">Github</a>).</p>
+        <p>However, I hope this is interesting and might spark some conversations around more rigorous studies.</p>
+    </div>
+
+    </div>
+        <div class="eight columns">
+          <div id="graph-wrapper">
+            <div class="graphplot"></div>
+            <script src="js/graphs.js"></script>
+            <script src="js/waypt.js"></script>
+            <div id="precinctBox" class="hidden">
+                <strong>Ward <span id="SWard">Ward</span>, Precinct  <span id="SPrecinct">Precinct</span></strong>
+                <br>
+                <br><strong>2015 (Feb) Mayoral Votes:</strong>
+                <p><strong>Emanuel: </strong><span id="SEmanuel">Emanuel_Pct</span>%</p>
+                <p><strong>Garcia: </strong><span id="SGarcia">Garcia_Pct</span>%</p>
+                <p><strong>Wilson: </strong><span id="SWilson">Wilson_Pct</span>%</p>
+                <p><strong>Fioretti: </strong><span id="SFioretti">Fioretti_Pct</span>%</p>
+                <p><strong>Walls: </strong><span id="SWalls">Walls_Pct</span>%</p>
+                <p><strong>Total Votes: </strong><span id="STot">Voting_Tot</span></p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</body>
+</html>

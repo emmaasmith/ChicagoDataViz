@@ -82,18 +82,26 @@ h2{
 }
 
 h2 a{
-  color: #999;
+  color: #777;
   font-weight: 100;
   font-size: .8em;
   transition: all .3s ease-out;
   -webkit-transition: all .3s ease-out;
 }
+
+h2 a:hover{
+  color: #ddd;
+}
+
+.descr{
+  color: #333;
+  font-weight: 300;
+  font-size: .8em;
+}
+
 a{
   text-decoration: none;
   color: #333;
-}
-h2 a:hover{
-  color: #ddd;
 }
 
 p{
@@ -110,7 +118,7 @@ u{
 
 #keytext{
   position: absolute;
-  top:250px;
+  top:300px;
   left:560px;
 }
 
